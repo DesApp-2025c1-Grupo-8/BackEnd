@@ -1,4 +1,13 @@
+using DotNetEnv;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Load environment variables from .env file only in development mode
+if (builder.Environment.IsDevelopment())
+{
+    Env.Load(".env");
+}
+
 
 // Add services to the container.
 
