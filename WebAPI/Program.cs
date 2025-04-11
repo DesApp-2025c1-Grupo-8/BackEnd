@@ -1,14 +1,10 @@
-using DotNetEnv;
 using Infraestructura.Persistencia.Configuraciones;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Load environment variables from .env file only in development mode
-if (builder.Environment.IsDevelopment()) Env.Load(".env");
-
 // DbContext injection
-builder.Services.AddDbContext<ProjectContext>(options => options.UseMySQL(Environment.GetEnvironmentVariable("STRING_CONNECTION") ?? string.Empty));
+builder.Services.AddDbContext<ProjectContext>();
 
 // Add services to the container.
 
@@ -22,7 +18,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    // Enable Migrations only in development mode
+    // Acá se agregó la creación y migración automática de la base de datos
     using (var serviceScope = app.Services.CreateScope())
     {
         var context = serviceScope.ServiceProvider.GetRequiredService<ProjectContext>();
