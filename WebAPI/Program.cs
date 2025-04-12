@@ -1,13 +1,10 @@
-using DotNetEnv;
+using Infraestructura.Persistencia.Configuraciones;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Load environment variables from .env file only in development mode
-if (builder.Environment.IsDevelopment())
-{
-    Env.Load(".env");
-}
-
+// DbContext injection
+builder.Services.AddDbContext<ProjectContext>();
 
 // Add services to the container.
 
@@ -21,6 +18,12 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    // Acá se agregó la creación y migración automática de la base de datos
+    using (var serviceScope = app.Services.CreateScope())
+    {
+        var context = serviceScope.ServiceProvider.GetRequiredService<ProjectContext>();
+        context.Database.Migrate();
+    }
     // Acá hubo que adaptar la compatibilidad de la versión de Swagger
     app.UseSwagger(options =>
     {
