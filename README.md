@@ -1,5 +1,33 @@
 ﻿# BackEnd
 
+## 🚀 Stack Tecnológico
+Este proyecto utiliza el siguiente conjunto de tecnologías:
+
+- .NET 8 (C#) – Plataforma principal para construir la WebAPI y la lógica del negocio.
+- Entity Framework Core 8 – ORM utilizado para el acceso y persistencia de datos con MySQL.
+- MySQL – Sistema de gestión de base de datos relacional.
+- ASP.NET Core Web API – Framework para exponer endpoints HTTP modernos, seguros y escalables.
+- Swagger (Swashbuckle) – Herramienta de documentación interactiva para probar los endpoints de la API.
+
+Se eligió este stack dada la familiarizacion de algunos miembros del equipo con dichas tecnologías y el interes de otros por aprenderlas, sumado a la facilidad del lenguaje C# de tipado estático y sintaxis simple.
+
+## 🧱 Arquitectura del Proyecto
+Este proyecto implementa una arquitectura basada en capas, inspirada en las arquitecturas Onion, Clean y Hexagonal. La solución está organizada en cuatro proyectos con responsabilidades bien definidas:
+
+- **Dominio:** Contiene las entidades, interfaces. Define el contrato del negocio, sin incluir lógica concreta ni dependencias externas. (Biblioteca de clases C#)
+
+- **Aplicación:** Implementa la lógica de negocio definida en el Dominio, coordinando operaciones y orquestando los procesos entre el sistema y la base de datos. También disponibiliza operacion, valores compartidos y excepciones personalizadas. (Biblioteca de clases C#)
+
+- **Infraestructura:** Implementa los contratos definidos en la capa de Dominio para el acceso a datos, haciendo uso de EntityFrameworkCore. (Biblioteca de clases C#)
+
+- **WebAPI:** Actúa como punto de entrada del sistema, exponiendo los endpoints HTTP y configurando la aplicación (inyección de dependencias, middlewares, etc.).  (ASP.NET Core Web API)
+
+> Las referencias entre proyectos siguen esta cadena: <br> WebAPI → Infraestructura → Aplicación → Dominio
+
+### 🧩 Patrones y prácticas implementadas
+- **Repository Pattern:** para abstraer el acceso a datos y mantener la lógica de negocio separada del proveedor de persistencia.
+- **Separación de responsabilidades:** cada capa tiene una única responsabilidad bien definida, siguiendo principios de diseño limpio.
+
 ## 🛠️ Tecnologías utilizadas 
 
 ### 📦 Persistencia de datos
