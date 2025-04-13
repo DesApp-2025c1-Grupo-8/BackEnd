@@ -27,6 +27,7 @@ Este proyecto implementa una arquitectura basada en capas, inspirada en las arqu
 ### 🧩 Patrones y prácticas implementadas
 - **Repository Pattern:** para abstraer el acceso a datos y mantener la lógica de negocio separada del proveedor de persistencia.
 - **Separación de responsabilidades:** cada capa tiene una única responsabilidad bien definida, siguiendo principios de diseño limpio.
+- **Inyección de dependencias (IoC):** utilizada para desacoplar la lógica y facilitar pruebas, configurada en `Program.cs`.
 
 ## 🛠️ Tecnologías utilizadas 
 
