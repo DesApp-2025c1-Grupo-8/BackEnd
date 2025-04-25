@@ -1,4 +1,4 @@
-using Infraestructura.Persistencia.Configuraciones;
+Ôªøusing Infraestructura.Persistencia.Configuraciones;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,13 +18,13 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    // Ac· se agregÛ la creaciÛn y migraciÛn autom·tica de la base de datos
+    // Ac√° se agreg√≥ la creaci√≥n y migraci√≥n autom√°tica de la base de datos
     using (var serviceScope = app.Services.CreateScope())
     {
         var context = serviceScope.ServiceProvider.GetRequiredService<ProjectContext>();
         context.Database.Migrate();
     }
-    // Ac· hubo que adaptar la compatibilidad de la versiÛn de Swagger
+    // Ac√° hubo que adaptar la compatibilidad de la versi√≥n de Swagger
     app.UseSwagger(options =>
     {
         options.SerializeAsV2 = true;
