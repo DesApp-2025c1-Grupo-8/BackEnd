@@ -1,6 +1,7 @@
 ﻿using Infraestructura.Persistencia.Configuraciones;
 using Microsoft.EntityFrameworkCore;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // DbContext injection
