@@ -5,8 +5,8 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Configuración de Kestrel para https para proteger en CICD expuesto
-string certPath = Environment.GetEnvironmentVariable("CERT_PATH_DESAPPS_BACK") ?? throw new Exception("Certificado no definido");
-string certPassword = Environment.GetEnvironmentVariable("CERT_PASS_DESAPPS_BACK") ?? throw new Exception("Contraseña del certificado no definida");
+string certPath = Environment.GetEnvironmentVariable("CERT_PATH_DESAPPS_BACK") ?? throw new InvalidOperationException("Certificado no definido");
+string certPassword = Environment.GetEnvironmentVariable("CERT_PASS_DESAPPS_BACK") ?? throw new InvalidOperationException("Contraseña del certificado no definida");
 builder.WebHost.ConfigureKestrel(serverOptions =>
 {
     //serverOptions.ListenAnyIP(5000); // HTTP
