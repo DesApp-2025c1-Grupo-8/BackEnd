@@ -13,11 +13,6 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      # - name: Set up .NET
-      #   uses: actions/setup-dotnet@v3
-      #   with:
-      #     dotnet-version: '8.0.x'
-
       - name: Restore dependencies
         run: dotnet restore
 
@@ -27,5 +22,5 @@ jobs:
       - name: Publish the project
         run: dotnet publish --configuration Release --output ~/deploy/desapps25c1/backend
 
-#      - name: Restart Backend service
-#        run: sudo systemctl restart desapps25c1-backend.service
+      - name: Restart Backend service
+        run: sudo systemctl restart desapps25c1-backend.service

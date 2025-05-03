@@ -12,7 +12,7 @@ public class ProjectContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         // Configuración de la cadena de conexión a la base de datos
-        var conn = Environment.GetEnvironmentVariable("STRING_CONN_DAPPS") ?? throw new Exception("STRING_CONN_DAPPS no definida");
+        var conn = Environment.GetEnvironmentVariable("STRING_CONN_DAPPS_MYSQL") ?? throw new InvalidOperationException("La cadena de conexión no está definida en la variable de entorno 'STRING_CONN_DAPPS_MYSQL'.");
         optionsBuilder.UseMySql(conn, ServerVersion.AutoDetect(conn));
         
         base.OnConfiguring(optionsBuilder);
